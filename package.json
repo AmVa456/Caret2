@@ -5,7 +5,7 @@
     "build": "grunt"
   },
   "dependencies": {
-    "grunt": "*",
+    "grunt": "^1.5.3",
     "grunt-contrib-less": "*",
     "grunt-contrib-watch": "*",
     "jszip": "^2.6.0"
