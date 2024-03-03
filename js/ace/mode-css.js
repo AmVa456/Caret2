@@ -339,7 +339,7 @@ var CssCompletions = function() {
                     return '-' + x.toLowerCase();
                 });
 
-                if (!propertyMap.hasOwnProperty(name))
+                if (!Object.prototype.hasOwnProperty.call(propertyMap, name))
                     propertyMap[name] = 1;
             }
         }

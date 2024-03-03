@@ -2193,7 +2193,7 @@ var XmlBehaviour = function () {
             if (tokenRow == position.row)
                 element = element.substring(0, position.column - tokenColumn);
 
-            if (this.voidElements.hasOwnProperty(element.toLowerCase()))
+            if (Object.prototype.hasOwnProperty.call(this.voidElements, element.toLowerCase()))
                  return;
 
             return {

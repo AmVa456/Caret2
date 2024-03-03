@@ -276,17 +276,17 @@ var ScssHighlightRules = function() {
                 regex : "(url\\()(.*)(\\))"
             }, {
                 token : function(value) {
-                    if (properties.hasOwnProperty(value.toLowerCase()))
+                    if (Object.prototype.hasOwnProperty.call(properties, value.toLowerCase()))
                         return "support.type";
-                    if (keywords.hasOwnProperty(value))
+                    if (Object.prototype.hasOwnProperty.call(keywords, value))
                         return "keyword";
-                    else if (constants.hasOwnProperty(value))
+                    else if (Object.prototype.hasOwnProperty.call(constants, value))
                         return "constant.language";
-                    else if (functions.hasOwnProperty(value))
+                    else if (Object.prototype.hasOwnProperty.call(functions, value))
                         return "support.function";
-                    else if (colors.hasOwnProperty(value.toLowerCase()))
+                    else if (Object.prototype.hasOwnProperty.call(colors, value.toLowerCase()))
                         return "support.constant.color";
-                    else if (tags.hasOwnProperty(value.toLowerCase()))
+                    else if (Object.prototype.hasOwnProperty.call(tags, value.toLowerCase()))
                         return "variable.language";
                     else
                         return "text";

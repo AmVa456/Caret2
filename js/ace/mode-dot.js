@@ -147,10 +147,10 @@ var DotHighlightRules = function() {
                 regex: /^#!.*$/
             }, {
                 token: function(value) {
-                    if (keywords.hasOwnProperty(value.toLowerCase())) {
+                    if (Object.prototype.hasOwnProperty.call(keywords, value.toLowerCase())) {
                         return "keyword";
                     }
-                    else if (attributes.hasOwnProperty(value.toLowerCase())) {
+                    else if (Object.prototype.hasOwnProperty.call(attributes, value.toLowerCase())) {
                         return "variable";
                     }
                     else {

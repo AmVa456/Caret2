@@ -730,9 +730,9 @@ var $kbSessionChange = function(e) {
     $formerLineStart = e.session.$useEmacsStyleLineStart;
     e.session.$useEmacsStyleLineStart = true;
 
-    if (!e.session.hasOwnProperty('$emacsMark'))
+    if (!Object.prototype.hasOwnProperty.call(e.session, '$emacsMark'))
         e.session.$emacsMark = null;
-    if (!e.session.hasOwnProperty('$emacsMarkRing'))
+    if (!Object.prototype.hasOwnProperty.call(e.session, '$emacsMarkRing'))
         e.session.$emacsMarkRing = [];
 };
 
