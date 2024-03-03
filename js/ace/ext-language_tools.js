@@ -228,7 +228,7 @@ var SnippetManager = function() {
             return (this.variables[name[0] + "__"] || {})[name.substr(1)] || "";
         
         name = name.replace(/^TM_/, "");
-        if (!this.variables.hasOwnProperty(name))
+        if (!Object.prototype.hasOwnProperty.call(this.variables, name))
             return "";
         var value = this.variables[name];
         if (typeof value == "function")

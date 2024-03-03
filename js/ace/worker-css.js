@@ -3599,7 +3599,7 @@ Parser.prototype = function(){
             }
         };
     for (prop in additions){
-        if (additions.hasOwnProperty(prop)){
+        if (Object.prototype.hasOwnProperty.call(additions, prop)){
             proto[prop] = additions[prop];
         }
     }
@@ -4452,7 +4452,7 @@ function isIdentStart(c){
 
 function mix(receiver, supplier){
     for (var prop in supplier){
-        if (supplier.hasOwnProperty(prop)){
+        if (Object.prototype.hasOwnProperty.call(supplier, prop)){
             receiver[prop] = supplier[prop];
         }
     }
@@ -5941,7 +5941,7 @@ var CSSLint = (function(){
         return result;
     };
     api.hasFormat = function(formatId){
-        return formatters.hasOwnProperty(formatId);
+        return Object.prototype.hasOwnProperty.call(formatters, formatId);
     };
     api.verify = function(text, ruleset){
 
@@ -5966,7 +5966,7 @@ var CSSLint = (function(){
 
         ruleset.errors = 2;       //always report parsing errors as errors
         for (i in ruleset){
-            if(ruleset.hasOwnProperty(i) && ruleset[i]){
+            if(Object.prototype.hasOwnProperty.call(ruleset, i) && ruleset[i]){
                 if (rules[i]){
                     rules[i].init(parser, reporter);
                 }
@@ -6067,7 +6067,7 @@ CSSLint.Util = {
         var prop;
 
         for (prop in supplier){
-            if (supplier.hasOwnProperty(prop)){
+            if (Object.prototype.hasOwnProperty.call(supplier, prop)){
                 receiver[prop] = supplier[prop];
             }
         }
@@ -6171,7 +6171,7 @@ CSSLint.addRule({
             if (!boxSizing) {
                 if (properties.height){
                     for (prop in heightProperties){
-                        if (heightProperties.hasOwnProperty(prop) && properties[prop]){
+                        if (Object.prototype.hasOwnProperty.call(heightProperties, prop) && properties[prop]){
                             value = properties[prop].value;
                             if (!(prop === "padding" && value.parts.length === 2 && value.parts[0].value === 0)){
                                 reporter.report("Using height with " + prop + " can sometimes make elements larger than you expect.", properties[prop].line, properties[prop].col, rule);
@@ -6182,7 +6182,7 @@ CSSLint.addRule({
 
                 if (properties.width){
                     for (prop in widthProperties){
-                        if (widthProperties.hasOwnProperty(prop) && properties[prop]){
+                        if (Object.prototype.hasOwnProperty.call(widthProperties, prop) && properties[prop]){
                             value = properties[prop].value;
 
                             if (!(prop === "padding" && value.parts.length === 2 && value.parts[1].value === 0)){
@@ -6371,7 +6371,7 @@ CSSLint.addRule({
 
 
         for (prop in compatiblePrefixes) {
-            if (compatiblePrefixes.hasOwnProperty(prop)) {
+            if (Object.prototype.hasOwnProperty.call(compatiblePrefixes, prop)) {
                 variations = [];
                 prefixed = compatiblePrefixes[prop].split(" ");
                 for (i = 0, len = prefixed.length; i < len; i++) {
@@ -6425,7 +6425,7 @@ CSSLint.addRule({
                 name = properties[i];
 
                 for (prop in compatiblePrefixes) {
-                    if (compatiblePrefixes.hasOwnProperty(prop)) {
+                    if (Object.prototype.hasOwnProperty.call(compatiblePrefixes, prop)) {
                         variations = compatiblePrefixes[prop];
                         if (CSSLint.Util.indexOf(variations, name.text) > -1) {
                             if (!propertyGroups[prop]) {
@@ -6445,7 +6445,7 @@ CSSLint.addRule({
             }
 
             for (prop in propertyGroups) {
-                if (propertyGroups.hasOwnProperty(prop)) {
+                if (Object.prototype.hasOwnProperty.call(propertyGroups, prop)) {
                     value = propertyGroups[prop];
                     full = value.full;
                     actual = value.actual;
@@ -7122,7 +7122,7 @@ CSSLint.addRule({
 
             var prop;
             for (prop in classes){
-                if (classes.hasOwnProperty(prop)){
+                if (Object.prototype.hasOwnProperty.call(classes, prop)){
                     if (classes[prop].length === 1 && classes[prop][0].part.elementName){
                         reporter.report("Element (" + classes[prop][0].part + ") is overqualified, just use " + classes[prop][0].modifier + " without element name.", classes[prop][0].part.line, classes[prop][0].part.col, rule);
                     }
@@ -7322,7 +7322,7 @@ CSSLint.addRule({
                 ]
             };
         for (prop in mapping){
-            if (mapping.hasOwnProperty(prop)){
+            if (Object.prototype.hasOwnProperty.call(mapping, prop)){
                 for (i=0, len=mapping[prop].length; i < len; i++){
                     propertiesToCheck[mapping[prop][i]] = prop;
                 }
@@ -7336,7 +7336,7 @@ CSSLint.addRule({
 
             var prop, i, len, total;
             for (prop in mapping){
-                if (mapping.hasOwnProperty(prop)){
+                if (Object.prototype.hasOwnProperty.call(mapping, prop)){
                     total=0;
 
                     for (i=0, len=mapping[prop].length; i < len; i++){
@@ -7494,7 +7494,7 @@ CSSLint.addRule({
                 messages = [];
 
             for (prop in headings){
-                if (headings.hasOwnProperty(prop)){
+                if (Object.prototype.hasOwnProperty.call(headings, prop)){
                     if (headings[prop] > 1){
                         messages.push(headings[prop] + " " + prop + "s");
                     }

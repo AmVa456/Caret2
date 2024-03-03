@@ -3289,7 +3289,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
     function copyArgs(args) {
       var ret = {};
       for (var prop in args) {
-        if (args.hasOwnProperty(prop)) {
+        if (Object.prototype.hasOwnProperty.call(args, prop)) {
           ret[prop] = args[prop];
         }
       }

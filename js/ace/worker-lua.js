@@ -1742,7 +1742,7 @@ ace.define("ace/mode/lua/luaparse",[], function(require, exports, module) {
 
     for (var i = 0, length = args.length; i < length; i++) {
       src = args[i];
-      for (prop in src) if (src.hasOwnProperty(prop)) {
+      for (prop in src) if (Object.prototype.hasOwnProperty.call(src, prop)) {
         dest[prop] = src[prop];
       }
     }

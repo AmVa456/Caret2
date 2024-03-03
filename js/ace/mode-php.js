@@ -1934,15 +1934,15 @@ sql_regcase'.split('|')
                         "T(?:HOUS(?:ANDS_SEP|EP)|_FMT(?:_AMPM|))|YES(?:EXPR|STR)|STD(?:IN|OUT|ERR))\\b"
             }, {
                 token : function(value) {
-                    if (keywords.hasOwnProperty(value))
+                    if (Object.prototype.hasOwnProperty.call(keywords, value))
                         return "keyword";
-                    else if (builtinConstants.hasOwnProperty(value))
+                    else if (Object.prototype.hasOwnProperty.call(builtinConstants, value))
                         return "constant.language";
-                    else if (builtinVariables.hasOwnProperty(value))
+                    else if (Object.prototype.hasOwnProperty.call(builtinVariables, value))
                         return "variable.language";
-                    else if (futureReserved.hasOwnProperty(value))
+                    else if (Object.prototype.hasOwnProperty.call(futureReserved, value))
                         return "invalid.illegal";
-                    else if (builtinFunctions.hasOwnProperty(value))
+                    else if (Object.prototype.hasOwnProperty.call(builtinFunctions, value))
                         return "support.function";
                     else if (value == "debugger")
                         return "invalid.deprecated";
@@ -11642,7 +11642,7 @@ var CssCompletions = function() {
                     return '-' + x.toLowerCase();
                 });
 
-                if (!propertyMap.hasOwnProperty(name))
+                if (!Object.prototype.hasOwnProperty.call(propertyMap, name))
                     propertyMap[name] = 1;
             }
         }
@@ -11983,7 +11983,7 @@ var XmlBehaviour = function () {
             if (tokenRow == position.row)
                 element = element.substring(0, position.column - tokenColumn);
 
-            if (this.voidElements.hasOwnProperty(element.toLowerCase()))
+            if (Object.prototype.hasOwnProperty.call(this.voidElements, element.toLowerCase()))
                  return;
 
             return {
@@ -12142,7 +12142,7 @@ function is(token, type) {
         if (tag.closing || (!tag.tagName && tag.selfClosing))
             return foldStyle == "markbeginend" ? "end" : "";
 
-        if (!tag.tagName || tag.selfClosing || this.voidElements.hasOwnProperty(tag.tagName.toLowerCase()))
+        if (!tag.tagName || tag.selfClosing || Object.prototype.hasOwnProperty.call(this.voidElements, tag.tagName.toLowerCase()))
             return "";
 
         if (this._findEndTagInLine(session, row, tag.tagName, tag.end.column))
@@ -12262,7 +12262,7 @@ function is(token, type) {
             if (!tag || top.tagName == tag.tagName) {
                 return stack.pop();
             }
-            else if (this.optionalEndTags.hasOwnProperty(top.tagName)) {
+            else if (Object.prototype.hasOwnProperty.call(this.optionalEndTags, top.tagName)) {
                 stack.pop();
                 continue;
             } else {

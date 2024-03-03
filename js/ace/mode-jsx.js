@@ -119,9 +119,9 @@ var JsxHighlightRules = function() {
                         return "variable.language";
                     else if (value == "function")
                         return "storage.type";
-                    else if (keywords.hasOwnProperty(value) || reserved.hasOwnProperty(value))
+                    else if (Object.prototype.hasOwnProperty.call(keywords, value) || Object.prototype.hasOwnProperty.call(reserved, value))
                         return "keyword";
-                    else if (buildinConstants.hasOwnProperty(value))
+                    else if (Object.prototype.hasOwnProperty.call(buildinConstants, value))
                         return "constant.language";
                     else if (/^_?[A-Z][a-zA-Z0-9_]*$/.test(value))
                         return "language.support.class";

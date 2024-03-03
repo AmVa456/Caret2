@@ -2717,9 +2717,9 @@ var CsoundOrchestraHighlightRules = function(embeddedRulePrefix) {
                 var tokens = value.split(this.splitRegex);
                 var name = tokens[1];
                 var type;
-                if (opcodes.hasOwnProperty(name))
+                if (Object.prototype.hasOwnProperty.call(opcodes, name))
                     type = "support.function.csound";
-                else if (deprecatedOpcodes.hasOwnProperty(name))
+                else if (Object.prototype.hasOwnProperty.call(deprecatedOpcodes, name))
                     type = "invalid.deprecated.csound";
                 if (type) {
                     if (tokens[2]) {
