@@ -246,7 +246,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
         event.addCommandKeyListener(sb, function(e, hashId, keyCode) {
             var keyString = keyUtil.keyCodeToString(keyCode);
             var command = _this.$searchBarKb.findKeyCommand(hashId, keyString);
-            if (command && command.exec) {
+            if (command?.exec) {
                 command.exec(_this);
                 event.stopEvent(e);
             }

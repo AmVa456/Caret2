@@ -3579,7 +3579,7 @@ oop.inherits(PhpWorker, Mirror);
 
 (function() {
     this.setOptions = function(opts) {
-        this.inlinePhp = opts && opts.inline;
+        this.inlinePhp = opts?.inline;
     };
     
     this.onUpdate = function() {

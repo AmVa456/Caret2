@@ -78,7 +78,7 @@ module.exports.overlayPage = function overlayPage(editor, contentElement, callba
         closer.parentNode.removeChild(closer);
         editor.focus();
         closer = null;
-        callback && callback();
+        callback?.();
     }
 
     closer.style.cssText = 'margin: 0; padding: 0; ' +

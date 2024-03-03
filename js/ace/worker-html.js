@@ -9951,7 +9951,7 @@ function _throws(shouldThrow, block, expected, message) {
     actual = e;
   }
 
-  message = (expected && expected.name ? ' (' + expected.name + ').' : '.') +
+  message = (expected?.name ? ' (' + expected.name + ').' : '.') +
             (message ? ' ' + message : '.');
 
   if (shouldThrow && !actual) {

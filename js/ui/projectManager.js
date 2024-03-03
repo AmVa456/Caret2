@@ -309,7 +309,7 @@ define([
             path: node.entry.fullPath,
             displayPath: node.displayPath,
             contextMenu: context.makeURL("file", node.entry.fullPath.replace(/[\/\\]/g, "@")),
-            className: current.path && current.path.endsWith(node.entry.fullPath) ? "active-file" : "",
+            className: current.path?.endsWith(node.entry.fullPath) ? "active-file" : "",
             label: node.label
           };
           var a = inflate.get("templates/projectFile.html", nodeData)

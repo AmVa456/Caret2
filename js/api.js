@@ -26,7 +26,7 @@ define([
         path: ""
       };
 
-      if (editor.session.file && editor.session.file.getPath) {
+      if (editor.session.file?.getPath) {
         var path = await editor.session.file.getPath();
         message.context.path = path;
       }

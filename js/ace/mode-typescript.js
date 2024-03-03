@@ -820,7 +820,7 @@ var TypeScriptHighlightRules = function (options) {
         }
     ];
 
-    var JSRules = new JavaScriptHighlightRules({jsx: (options && options.jsx) == true}).getRules();
+    var JSRules = new JavaScriptHighlightRules({jsx: (options?.jsx) == true}).getRules();
     
     JSRules.no_regex = tsRules.concat(JSRules.no_regex);
     this.$rules = JSRules;

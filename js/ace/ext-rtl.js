@@ -90,7 +90,7 @@ function updateLineDirection(e, renderer) {
     var width = renderer.layerConfig.width - renderer.layerConfig.padding + "px";
     cells.forEach(function(cell) {
         var style = cell.element.style;
-        if ($bidiHandler && $bidiHandler.isRtlLine(cell.row)) {
+        if ($bidiHandler?.isRtlLine(cell.row)) {
             style.direction = "rtl";
             style.textAlign = "right";
             style.width = width;

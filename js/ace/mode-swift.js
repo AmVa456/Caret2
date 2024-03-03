@@ -78,7 +78,7 @@ var SwiftHighlightRules = function() {
     
     function string(start, options) {
         var nestable = options.nestable || options.interpolation;
-        var interpStart = options.interpolation && options.interpolation.nextState || "start";
+        var interpStart = options.interpolation?.nextState || "start";
         var mainRule = {
             regex: start + (options.multiline ? "" : "(?=.)"),
             token: "string.start"

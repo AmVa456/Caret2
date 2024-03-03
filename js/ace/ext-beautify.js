@@ -42,7 +42,7 @@ exports.beautify = function(session) {
     var parents = [];
 
     var trimNext = function() {
-        if (nextToken && nextToken.value && nextToken.type !== 'string.regexp')
+        if (nextToken?.value && nextToken.type !== 'string.regexp')
             nextToken.value = nextToken.value.trim();
     };
 

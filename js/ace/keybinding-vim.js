@@ -121,7 +121,7 @@ ace.define("ace/keyboard/vim",["require","exports","module","ace/range","ace/lib
     var change = { text: delta.action[0] == 'i' ? delta.lines : [] };
     var curOp = this.curOp = this.curOp || {};
     if (!curOp.changeHandlers)
-      curOp.changeHandlers = this._eventRegistry["change"] && this._eventRegistry["change"].slice();
+      curOp.changeHandlers = this._eventRegistry["change"]?.slice();
     if (!curOp.lastChange) {
       curOp.lastChange = curOp.change = change;
     } else {
@@ -132,7 +132,7 @@ ace.define("ace/keyboard/vim",["require","exports","module","ace/range","ace/lib
   this.onSelectionChange = function() {
     var curOp = this.curOp = this.curOp || {};
     if (!curOp.cursorActivityHandlers)
-      curOp.cursorActivityHandlers = this._eventRegistry["cursorActivity"] && this._eventRegistry["cursorActivity"].slice();
+      curOp.cursorActivityHandlers = this._eventRegistry["cursorActivity"]?.slice();
     this.curOp.cursorActivity = true;
     if (this.ace.inMultiSelectMode) {
       this.ace.keyBinding.removeKeyboardHandler(multiSelectCommands.keyboardHandler);
@@ -172,7 +172,7 @@ ace.define("ace/keyboard/vim",["require","exports","module","ace/range","ace/lib
     var op = this.curOp;
     if (op) {
       if (op.change) { this.signal("change", op.change, op); }
-      if (op && op.cursorActivity) { this.signal("cursorActivity", null, op); }
+      if (op?.cursorActivity) { this.signal("cursorActivity", null, op); }
       this.curOp = null;
     }
   };
@@ -392,7 +392,7 @@ ace.define("ace/keyboard/vim",["require","exports","module","ace/range","ace/lib
           start: last || acePos
         });
         var range = search.find(cm.ace.session);
-        if (range && range.isEmpty()) {
+        if (range?.isEmpty()) {
           if (cm.getLine(range.start.row).length == range.start.column) {
             search.$options.start = range;
             range = search.find(cm.ace.session);
@@ -529,7 +529,7 @@ ace.define("ace/keyboard/vim",["require","exports","module","ace/range","ace/lib
     this.ace.renderer.updateBackMarkers();
   };
   this.removeOverlay = function(o) {
-    if (this.$searchHighlight && this.$searchHighlight.session) {
+    if (this.$searchHighlight?.session) {
       this.$searchHighlight.destroy();
     }
   };
@@ -776,7 +776,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
         CodeMirror.on(inp, "keyup", function(e) {options.onKeyUp(e, inp.value, close);});
 
       CodeMirror.on(inp, "keydown", function(e) {
-        if (options && options.onKeyDown && options.onKeyDown(e, inp.value, close)) { return; }
+        if (options?.onKeyDown && options.onKeyDown(e, inp.value, close)) { return; }
         if (e.keyCode == 13) callback(inp.value);
         if (e.keyCode == 27 || (options.closeOnEnter !== false && e.keyCode == 13)) {
           inp.blur();
@@ -804,7 +804,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
   CodeMirror.defineExtension("openNotification", function(template, options) {
     if (this.virtualSelectionMode()) return;
     closeNotification(this, close);
-    var dialog = dialogDiv(this, template, options && options.bottom);
+    var dialog = dialogDiv(this, template, options?.bottom);
     var closed = false, doneTimer;
     var duration = options && typeof options.duration !== "undefined" ? options.duration : 5000;
 
@@ -1222,7 +1222,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
         }
         return;
       } else {
-        var local = (scope !== 'global') && (cm && cm.state.vim.options[name]);
+        var local = (scope !== 'global') && (cm?.state.vim.options[name]);
         return (local || (scope !== 'local') && option || {}).value;
       }
     }
@@ -2857,7 +2857,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
       enterInsertMode: function(cm, actionArgs, vim) {
         if (cm.getOption('readOnly')) { return; }
         vim.insertMode = true;
-        vim.insertModeRepeat = actionArgs && actionArgs.repeat || 1;
+        vim.insertModeRepeat = actionArgs?.repeat || 1;
         var insertAt = (actionArgs) ? actionArgs.insertAt : null;
         var sel = vim.sel;
         var head = actionArgs.head || cm.getCursor('head');
@@ -2904,7 +2904,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
           }
         }
         cm.setOption('disableInput', false);
-        if (actionArgs && actionArgs.replace) {
+        if (actionArgs?.replace) {
           cm.toggleOverwrite(true);
           cm.setOption('keyMap', 'vim-replace');
           CodeMirror.signal(cm, "vim-mode-change", {mode: "replace"});
@@ -4585,7 +4585,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
     function getMarkPos(cm, vim, markName) {
 
       var mark = vim.marks[markName];
-      return mark && mark.find();
+      return mark?.find();
     }
 
     var ExCommandDispatcher = function() {
@@ -4785,7 +4785,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
         if (lhs != ':' && lhs.charAt(0) == ':') {
           if (ctx) { throw Error('Mode not supported for ex mappings'); }
           var commandName = lhs.substring(1);
-          if (this.commandMap_[commandName] && this.commandMap_[commandName].user) {
+          if (this.commandMap_[commandName]?.user) {
             delete this.commandMap_[commandName];
             return;
           }
@@ -5083,7 +5083,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
           }
           trailing = tokens[2] ? tokens[2].split(' ') : [];
         } else {
-          if (argString && argString.length) {
+          if (argString?.length) {
             showConfirm(cm, 'Substitutions should be of the form ' +
                 ':s/pattern/replace/');
             return;
@@ -5397,7 +5397,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
       if (macroModeState.isPlaying) { return; }
       var registerName = macroModeState.latestRegister;
       var register = vimGlobalState.registerController.getRegister(registerName);
-      if (register && register.pushInsertModeChanges) {
+      if (register?.pushInsertModeChanges) {
         register.pushInsertModeChanges(macroModeState.lastInsertModeChanges);
       }
     }
@@ -5406,7 +5406,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
       if (macroModeState.isPlaying) { return; }
       var registerName = macroModeState.latestRegister;
       var register = vimGlobalState.registerController.getRegister(registerName);
-      if (register && register.pushSearchQuery) {
+      if (register?.pushSearchQuery) {
         register.pushSearchQuery(query);
       }
     }

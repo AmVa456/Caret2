@@ -1526,7 +1526,7 @@ var CssBehaviour = function () {
             var cursor = editor.getCursorPosition();
             var iterator = new TokenIterator(session, cursor.row, cursor.column);
             var token = iterator.getCurrentToken();
-            if (token && token.value.match(/\s+/)) {
+            if (token?.value.match(/\s+/)) {
                 token = iterator.stepBackward();
             }
             if (token && token.type === 'support.type') {
@@ -1554,7 +1554,7 @@ var CssBehaviour = function () {
             var cursor = editor.getCursorPosition();
             var iterator = new TokenIterator(session, cursor.row, cursor.column);
             var token = iterator.getCurrentToken();
-            if (token && token.value.match(/\s+/)) {
+            if (token?.value.match(/\s+/)) {
                 token = iterator.stepBackward();
             }
             if (token && token.type === 'support.type') {
