@@ -161,7 +161,7 @@ oop.inherits(OccurKeyboardHandler, HashHandler);
     var handleKeyboard$super = this.handleKeyboard;
     this.handleKeyboard = function(data, hashId, key, keyCode) {
         var cmd = handleKeyboard$super.call(this, data, hashId, key, keyCode);
-        return (cmd && cmd.command) ? cmd : undefined;
+        return (cmd?.command) ? cmd : undefined;
     };
 
 }).call(OccurKeyboardHandler.prototype);
@@ -295,7 +295,7 @@ exports.iSearchCommands = [{
     exec: function(iSearch) {
         var ed = iSearch.$editor,
             hl = ed.session.$isearchHighlight,
-            ranges = hl && hl.cache ? hl.cache
+            ranges = hl?.cache ? hl.cache
                 .reduce(function(ranges, ea) {
                     return ranges.concat(ea ? ea : []); }, []) : [];
         iSearch.deactivate(false);
@@ -972,7 +972,7 @@ exports.handler.addCommands({
     setMark:  {
         exec: function(editor, args) {
 
-            if (args && args.count) {
+            if (args?.count) {
                 if (editor.inMultiSelectMode) editor.forEachSelection(moveToMark);
                 else moveToMark();
                 moveToMark();

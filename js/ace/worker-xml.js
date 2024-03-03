@@ -1836,8 +1836,8 @@ function parseDCC(source,start,domBuilder,errorHandler){//sure start with '<!'
 			var pubid = len>3 && /^public$/i.test(matchs[2][0]) && matchs[3][0]
 			var sysid = len>4 && matchs[4][0];
 			var lastMatch = matchs[len-1]
-			domBuilder.startDTD(name,pubid && pubid.replace(/^(['"])(.*?)\1$/,'$2'),
-					sysid && sysid.replace(/^(['"])(.*?)\1$/,'$2'));
+			domBuilder.startDTD(name,pubid?.replace(/^(['"])(.*?)\1$/,'$2'),
+					sysid?.replace(/^(['"])(.*?)\1$/,'$2'));
 			domBuilder.endDTD();
 			
 			return lastMatch.index+lastMatch[0].length
@@ -2294,7 +2294,7 @@ function _onRemoveAttribute(doc,el,newAttr,remove){
 	}
 }
 function _onUpdateChild(doc,el,newChild){
-	if(doc && doc._inc){
+	if(doc?._inc){
 		doc._inc++;
 		var cs = el.childNodes;
 		if(newChild){
@@ -2533,7 +2533,7 @@ Element.prototype = {
 	},
 	getAttribute : function(name){
 		var attr = this.getAttributeNode(name);
-		return attr && attr.value || '';
+		return attr?.value || '';
 	},
 	getAttributeNode : function(name){
 		return this.attributes.getNamedItem(name);
@@ -2573,7 +2573,7 @@ Element.prototype = {
 	},
 	getAttributeNS : function(namespaceURI, localName){
 		var attr = this.getAttributeNodeNS(namespaceURI, localName);
-		return attr && attr.value || '';
+		return attr?.value || '';
 	},
 	setAttributeNS : function(namespaceURI, qualifiedName, value){
 		var attr = this.ownerDocument.createAttributeNS(namespaceURI, qualifiedName);
@@ -3080,7 +3080,7 @@ DOMHandler.prototype = {
 	
 	startDTD:function(name, publicId, systemId) {
 		var impl = this.document.implementation;
-	    if (impl && impl.createDocumentType) {
+	    if (impl?.createDocumentType) {
 	        var dt = impl.createDocumentType(name, publicId, systemId);
 	        this.locator && position(this.locator,dt)
 	        appendElement(this, dt);

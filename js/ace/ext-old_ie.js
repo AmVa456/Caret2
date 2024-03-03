@@ -224,7 +224,7 @@ var SearchBox = function(editor, range, showReplaceForm) {
         event.addCommandKeyListener(sb, function(e, hashId, keyCode) {
             var keyString = keyUtil.keyCodeToString(keyCode);
             var command = _this.$searchBarKb.findKeyCommand(hashId, keyString);
-            if (command && command.exec) {
+            if (command?.exec) {
                 command.exec(_this);
                 event.stopEvent(e);
             }
@@ -434,8 +434,8 @@ if (typeof document != "undefined" && !document.documentElement.querySelector) {
             var classNeme = selector.slice(1);
         } else {
             var m = selector.match(/(\w+)=(\w+)/);
-            var attr = m && m[1];
-            var attrVal = m && m[2];
+            var attr = m?.[1];
+            var attrVal = m?.[2];
         }
         for (var i = 0; i < el.all.length; i++) {
             var ch = el.all[i];

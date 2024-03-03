@@ -375,7 +375,7 @@ function setupApi(editor, editorDiv, settingDiv, ace, options) {
 
             case "keybindings":
                 var value = editor.getKeyboardHandler();
-                switch (value && value.$id) {
+                switch (value?.$id) {
                     case "ace/keyboard/vim":
                         return "vim";
                     case "ace/keyboard/emacs":

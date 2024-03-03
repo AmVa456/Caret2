@@ -236,7 +236,7 @@ oop.inherits(FoldMode, BaseFoldMode);
         var token;
         function getTokenType(row) {
             token = session.getTokens(row)[0];
-            return token && token.type;
+            return token?.type;
         }
 
         var levels = ["=","-","~","^","+"];
@@ -264,7 +264,7 @@ oop.inherits(FoldMode, BaseFoldMode);
                     break;
             }
 
-            var isSingleLineHeading = token && token.value.match(this.singleLineHeadingRe);
+            var isSingleLineHeading = token?.value.match(this.singleLineHeadingRe);
             endRow = isSingleLineHeading ? row - 1 : row - 2;
 
             if (endRow > startRow) {

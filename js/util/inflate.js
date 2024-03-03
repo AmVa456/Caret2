@@ -38,7 +38,7 @@ define([
         var value = data[key];
         replacement = "";
         //switch based on the type
-        if (value && value.map) {
+        if (value?.map) {
           //arrays get a loop
           var boundProcess = process.bind(null, contents);
           replacement = value.map(boundProcess).join("");

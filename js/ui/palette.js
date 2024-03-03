@@ -429,7 +429,7 @@ define([
         this.selected = this.results.length + this.selected;
       }
       var current = this.results[this.selected];
-      if (current && current.tab) {
+      if (current?.tab) {
         sessions.raiseBlurred(current.tab);
         if (current.line >= 0) {
           editor.clearSelection();

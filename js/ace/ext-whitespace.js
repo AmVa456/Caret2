@@ -86,9 +86,9 @@ exports.trimTrailingSpace = function(session, options) {
     var doc = session.getDocument();
     var lines = doc.getAllLines();
     
-    var min = options && options.trimEmpty ? -1 : 0;
+    var min = options?.trimEmpty ? -1 : 0;
     var cursors = [], ci = -1;
-    if (options && options.keepCursorPosition) {
+    if (options?.keepCursorPosition) {
         if (session.selection.rangeCount) {
             session.selection.rangeList.ranges.forEach(function(x, i, ranges) {
                var next = ranges[i + 1];
@@ -101,7 +101,7 @@ exports.trimTrailingSpace = function(session, options) {
         }
         ci = 0;
     }
-    var cursorRow = cursors[ci] && cursors[ci].row;
+    var cursorRow = cursors[ci]?.row;
 
     for (var i = 0, l=lines.length; i < l; i++) {
         var line = lines[i];

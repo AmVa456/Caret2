@@ -132,9 +132,9 @@ var highlight = function(el, opts, callback) {
             var pos = highlighted.session.doc.indexToPosition(nodes[i]);
             var node = nodes[i + 1];
             var lineEl = container.children[pos.row];
-            lineEl && lineEl.appendChild(node);
+            lineEl?.appendChild(node);
         }
-        callback && callback();
+        callback?.();
     });
 };
 highlight.render = function(input, mode, theme, lineStart, disableGutter, callback) {

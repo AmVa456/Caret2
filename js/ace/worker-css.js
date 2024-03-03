@@ -5897,8 +5897,8 @@ var CSSLint = (function(){
     };
     function applyEmbeddedRuleset(text, ruleset){
         var valueMap,
-            embedded = text && text.match(embeddedRuleset),
-            rules = embedded && embedded[1];
+            embedded = text?.match(embeddedRuleset),
+            rules = embedded?.[1];
 
         if (rules) {
             valueMap = {

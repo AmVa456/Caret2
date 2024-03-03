@@ -1841,7 +1841,7 @@ var CssBehaviour = function () {
             var cursor = editor.getCursorPosition();
             var iterator = new TokenIterator(session, cursor.row, cursor.column);
             var token = iterator.getCurrentToken();
-            if (token && token.value.match(/\s+/)) {
+            if (token?.value.match(/\s+/)) {
                 token = iterator.stepBackward();
             }
             if (token && token.type === 'support.type') {
@@ -1869,7 +1869,7 @@ var CssBehaviour = function () {
             var cursor = editor.getCursorPosition();
             var iterator = new TokenIterator(session, cursor.row, cursor.column);
             var token = iterator.getCurrentToken();
-            if (token && token.value.match(/\s+/)) {
+            if (token?.value.match(/\s+/)) {
                 token = iterator.stepBackward();
             }
             if (token && token.type === 'support.type') {
@@ -2486,7 +2486,7 @@ var voidElements = ["area", "base", "br", "col", "embed", "hr", "img", "input", 
 var optionalEndTags = ["li", "dt", "dd", "p", "rt", "rp", "optgroup", "option", "colgroup", "td", "th"];
 
 var Mode = function(options) {
-    this.fragmentContext = options && options.fragmentContext;
+    this.fragmentContext = options?.fragmentContext;
     this.HighlightRules = HtmlHighlightRules;
     this.$behaviour = new XmlBehaviour();
     this.$completer = new HtmlCompletions();

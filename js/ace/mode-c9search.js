@@ -39,7 +39,7 @@ var C9SearchHighlightRules = function() {
                     
                     var m;
                     var last = 0;
-                    if (regex && regex.exec) {
+                    if (regex?.exec) {
                         regex.lastIndex = 0;
                         while (m = regex.exec(str)) {
                             var skipped = str.substring(last, m.index);

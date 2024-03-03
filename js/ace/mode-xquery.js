@@ -1916,7 +1916,7 @@ exports.Lexer = function(Tokenizer, Rules) {
                     value: token.value
                 });
         
-                if(info && info.next) {
+                if(info?.next) {
                     info.next(stack);
                 }
       

@@ -54,11 +54,11 @@ var VARIABLES = {
     FULLNAME: function() { return "Unknown"; },
     BLOCK_COMMENT_START: function(editor) {
         var mode = editor.session.$mode || {};
-        return mode.blockComment && mode.blockComment.start || "";
+        return mode.blockComment?.start || "";
     },
     BLOCK_COMMENT_END: function(editor) {
         var mode = editor.session.$mode || {};
-        return mode.blockComment && mode.blockComment.end || "";
+        return mode.blockComment?.end || "";
     },
     LINE_COMMENT: function(editor) {
         var mode = editor.session.$mode || {};
@@ -178,7 +178,7 @@ var SnippetManager = function() {
                     var next = stack.shift();
                     if (next)
                         next.flag = val.slice(1, -1);
-                    this.next = next && next.tabstopId ? "start" : "";
+                    this.next = next?.tabstopId ? "start" : "";
                     return [next || val];
                 }, next: "start"},
                 {regex: /\$(?:\d+|\w+)/, onMatch: function(val, state, stack) {
@@ -192,7 +192,7 @@ var SnippetManager = function() {
                 {regex: /\n/, token: "newline", merge: false},
                 {regex: /}/, onMatch: function(val, state, stack) {
                     var next = stack.shift();
-                    this.next = next && next.tabstopId ? "start" : "";
+                    this.next = next?.tabstopId ? "start" : "";
                     return [next || val];
                 }, next: "start"}
             ],
@@ -500,7 +500,7 @@ var SnippetManager = function() {
         var scope = this.$getScope(editor);
         var scopes = [scope];
         var snippetMap = this.snippetMap;
-        if (snippetMap[scope] && snippetMap[scope].includeScopes) {
+        if (snippetMap[scope]?.includeScopes) {
             scopes.push.apply(scopes, snippetMap[scope].includeScopes);
         }
         scopes.push("_");
@@ -533,7 +533,7 @@ var SnippetManager = function() {
         }, this);
         if (!snippet)
             return false;
-        if (options && options.dryRun)
+        if (options?.dryRun)
             return true;
         editor.session.doc.removeInLine(cursor.row,
             cursor.column - snippet.replaceBefore.length,
@@ -631,7 +631,7 @@ var SnippetManager = function() {
             s.endTriggerRe = new RegExp(s.endTrigger);
         }
 
-        if (snippets && snippets.content)
+        if (snippets?.content)
             addSnippet(snippets);
         else if (Array.isArray(snippets))
             snippets.forEach(addSnippet);
@@ -644,10 +644,10 @@ var SnippetManager = function() {
 
         function removeSnippet(s) {
             var nameMap = snippetNameMap[s.scope||scope];
-            if (nameMap && nameMap[s.name]) {
+            if (nameMap?.[s.name]) {
                 delete nameMap[s.name];
                 var map = snippetMap[s.scope||scope];
-                var i = map && map.indexOf(s);
+                var i = map?.indexOf(s);
                 if (i >= 0)
                     map.splice(i, 1);
             }
@@ -747,7 +747,7 @@ var TabstopManager = function(editor) {
 
     this.onChange = function(delta) {
         var isRemove = delta.action[0] == "r";
-        var parents = this.selectedTabstop && this.selectedTabstop.parents || {};
+        var parents = this.selectedTabstop?.parents || {};
         var tabstops = (this.tabstops || []).slice();
         for (var i = 0; i < tabstops.length; i++) {
             var ts = tabstops[i];
@@ -755,7 +755,7 @@ var TabstopManager = function(editor) {
             ts.rangeList.$bias = active ? 0 : 1;
             
             if (delta.action == "remove" && ts !== this.selectedTabstop) {
-                var parentActive = ts.parents && ts.parents[this.selectedTabstop.index];
+                var parentActive = ts.parents?.[this.selectedTabstop.index];
                 var startIndex = ts.rangeList.pointIndex(delta.start, parentActive);
                 startIndex = startIndex < 0 ? -startIndex - 1 : startIndex + 1;
                 var endIndex = ts.rangeList.pointIndex(delta.end, parentActive);
@@ -847,7 +847,7 @@ var TabstopManager = function(editor) {
         }
         
         this.editor.keyBinding.addKeyboardHandler(this.keyboardHandler);
-        if (this.selectedTabstop && this.selectedTabstop.choices)
+        if (this.selectedTabstop?.choices)
             this.editor.execCommand("startAutocomplete", {matches: this.selectedTabstop.choices});
     };
     this.addTabstops = function(tabstops, start, end) {
@@ -940,7 +940,7 @@ var TabstopManager = function(editor) {
     this.keyboardHandler = new HashHandler();
     this.keyboardHandler.bindKeys({
         "Tab": function(ed) {
-            if (exports.snippetManager && exports.snippetManager.expandWithTab(ed)) {
+            if (exports.snippetManager?.expandWithTab(ed)) {
                 return;
             }
 
@@ -1107,7 +1107,7 @@ AceEmmetEditor.prototype = {
             return profile;
           default:
             var mode = this.ace.session.$mode;
-            return mode.emmetConfig && mode.emmetConfig.profile || "xhtml";
+            return mode.emmetConfig?.profile || "xhtml";
         }
     },
     prompt: function(title) {
@@ -1290,7 +1290,7 @@ exports.load = function(cb) {
     }
     config.loadModule(emmetPath, function() {
         emmetPath = null;
-        cb && cb();
+        cb?.();
     });
     return true;
 };
