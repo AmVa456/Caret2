@@ -335,7 +335,7 @@ exports.createMap = function(props) {
     return map;
 };
 exports.arrayRemove = function(array, value) {
-  for (var i = 0; i <= array.length; i++) {
+  for (var i = 0; i < array.length; i++) {
     if (value === array[i]) {
       array.splice(i, 1);
     }
