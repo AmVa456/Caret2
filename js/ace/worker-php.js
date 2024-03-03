@@ -2574,7 +2574,7 @@ PHP.Parser.prototype.getNextToken = function( ) {
         if (typeof token === "string") {
             this.startAttributes['startLine'] = this.line;
             this.endAttributes['endLine'] = this.line;
-            if ('b"' === token) {
+            if (token === 'b"') {
                 this.tokenValue = 'b"';
                 return '"'.charCodeAt(0);
             } else {
@@ -2639,7 +2639,7 @@ PHP.Parser.prototype.createTokenMap = function() {
             tokenMap[ i ] = PHP.Constants.T_ECHO;
         } else if( PHP.Constants.T_CLOSE_TAG === i ) {
             tokenMap[ i ] = 59;
-        } else if ( 'UNKNOWN' !== (name = this.tokenName( i ) ) ) { 
+        } else if ( (name = this.tokenName( i ) ) !== 'UNKNOWN' ) { 
             tokenMap[ i ] =  this[name];
         }
     }
