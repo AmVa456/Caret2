@@ -541,7 +541,7 @@ define([
       if (!tab || !tab.path) return;
 
       // handle escaping backslashes in Windows paths
-      var path = tab.path.replace(/\\/g, `\\\\`);
+      var path = tab.path.replace(/\\/g, "\\\\");
       var matchingFile = tree.querySelector('a[path="' + path + '"]');
       if (!matchingFile) return;
 
